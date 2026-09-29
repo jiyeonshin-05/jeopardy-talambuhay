@@ -3,87 +3,103 @@ import type { PlayerData, Question } from '$lib/index';
 const playerData: PlayerData[] = [];
 const TIME_LEFT = 8; // seconds
 const sortQuestions = (questions: { points: number; question: string; answer: string; imgSrc?: string; }[]) => questions.sort((a, b) => a.points - b.points).map(q => ({ ...q, answered: false, buzzers: [] as string[] }));
-const pastQuestions: Question[] = sortQuestions([
+const lifeQuestions: Question[] = sortQuestions([
     {
-        points: 100,
-        question: 'What US state is the Land of Lincoln?',
-        answer: 'Illinois',
-    },
+    points: 100,
+    question: 'How many siblings does Jiyeon have?',
+    imgSrc: '/sibling.png',
+    answer: 'One',
+},
     {
         points: 200,
-        question:
-            'Which country\'s flag is this?',
-        imgSrc: "https://cdn.britannica.com/34/4034-050-91EE1BCF/Flag-Myanmar.jpg",
-        answer: 'Myanmar',
+        question: 'Where does Jiyeon live?',
+        imgSrc: '/westchester.jpg',
+        answer: 'Westchester'
     },
     {
         points: 300,
-        question:
-            'What Ivy League school has the highest Native American enrollment (a whoppping 1%)?',
-        answer: 'Dartmouth',
+        question: 'What sport does Jiyeon do competitively?',
+        imgSrc: '/iceskating.jpg',
+        answer: 'Ice skating',
+    },
+   {
+        points: 400,
+        question: 'Where did Jiyeon live when she was 2?',
+        imgSrc: '/manhattan.jpeg',
+        answer: 'New York City',
+    }
+]);
+
+const favoritesQuestions: Question[] = sortQuestions([
+    {
+        points: 200,
+        question: "What is Jiyeon's favorite color palette?",
+        imgSrc: '/pastel.png',
+        answer: 'Pastel',
+    },
+    {
+        points: 100,
+        question: "What is Jiyeon's favorite season?",
+        imgSrc: '/autumn.webp',
+        answer: 'Autumn',
+    },
+    {
+        points: 300,
+        question: "What is Jiyeon's favorite dessert?",
+        imgSrc: '/sorbet.jpg',
+        answer: 'Ice cream',
     },
     {
         points: 400,
-        question: 'Who wrote the Critique of Pure Reason?',
-        answer: 'Immanuel Kant',
+        question: "What is Jiyeon's favorite book genre?",
+        imgSrc: '/dystopian.jpeg',
+        answer: 'Dystopian',
     }
 ]);
 
-const presentQuestions: Question[] =
-    sortQuestions([
-        {
-            points: 400,
-            question:
-                'This is Donu, a character from which video game?',
-            imgSrc: '/donu-gif.gif',
-            answer: 'Slay the Spire',
-        },
-        {
-            points: 100,
-            question:
-                'Tahini is made from which seed?',
-            imgSrc: 'https://www.aforkstale.com/wp-content/uploads/how-to-make-homemade-tahini-1200-x-1200.jpg',
-            answer: 'Sesame',
-        },
-        {
-            points: 200,
-            question: 'What programming language is the below code?',
-            imgSrc: '/programming_language.png',
-            answer: 'Javascript',
-        },
-        {
-            points: 300,
-            question:
-                'This country is home to the Dolomites, which are a mountain range that has historical \'via ferratas\', iron cables and rungs, to aid traversing the peaks?',
-            imgSrc:
-                "https://laguidalpina.it/cdn/shop/products/ferrata-marmolada-cresta-ovest-Cristiano-Gregnanin-Guida-Alpina-Certificata-Dolomiti-5.jpg?v=1738870778",
-            answer: 'Italy',
-        }
-    ]);
-const futureQuestions: Question[] = sortQuestions([
+const triviaQuestions: Question[] = sortQuestions([
     {
         points: 100,
-        question:
-            'This type of 2D drawing allows you to see the sides of a 3D object at the same scale.',
-        imgSrc:
-            "https://static.mathigon.org/cms/a8141a111490d026fa6578a4933d1d47.png",
-        answer: 'Isometric',
+        question: "What is Jiyeon's favorite school subject?",
+        imgSrc: '/science.jpg',
+        answer: 'Science',
+    },
+    {
+        
+         points: 200,
+        question: "What is Jiyeon's ethnicity?",
+        imgSrc: '/korean.jpeg',
+        answer: 'Korean',
+      
+    },
+    {
+         
+        points: 400,
+        question: "What is Jiyeon's MBTI?",
+        imgSrc: '/esfj.jpeg',
+        answer: 'ESFJ',
+        
+    },
+    {
+       points: 300,
+        question: "What is Jiyeon's zodiac sign (November 5)?",
+        imgSrc: '/scorpio.webp',
+        answer: 'Scorpio',
     }
 ]);
-
 
 const categories = [
     {
-        title: 'Ms Feng\'s Past',
-        questions: pastQuestions
+        title: "Jiyeon's Life",
+        questions: lifeQuestions
     },
     {
-        title: `Ms. Feng's Present`,
-        questions: presentQuestions
+        title: "Jiyeon's Favorites",
+        questions: favoritesQuestions
     },
     {
-        title: "Ms. Feng's Future",
-        questions: futureQuestions
+        title: "Random Trivia",
+        questions: triviaQuestions
     }
 ];
 

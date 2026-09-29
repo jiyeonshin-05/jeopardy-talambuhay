@@ -219,18 +219,18 @@
 	}
 
 	.modal-content {
-		background: var(--theme-color);
-		color: white;
-		padding: 2rem;
-		border-radius: 10px;
-		max-width: 800px;
-		text-align: center;
-		overflow: scroll;
-	}
+	background: var(--theme-color);
+	color: #6b5135;
+	padding: 1.5rem;
+	border-radius: 10px;
+	max-width: 700px;
+	text-align: center;
+	overflow: scroll;
+}
 
 	:global(.half-screen-img) {
 		max-width: 100%;
-		max-height: 70vh;
+		max-height: 55vh;
 		height: auto;
 		object-fit: contain; /* Ensures the whole image is visible */
 	}

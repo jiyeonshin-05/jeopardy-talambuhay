@@ -160,24 +160,24 @@
 	@import url('https://fonts.cdnfonts.com/css/itc-korinna-std');
 
 	:root {
-		--theme-color: #060ce9;
-		--point-color: goldenrod;
+		--theme-color: #f5f5dc;
+		--point-color: #8b6f47;
 		font-family: 'ITC_ Korinna', sans-serif;
-		background-color:black;
+		background-color: #fff8dc;
 	}
 
 	:global(input) {
 		padding: 0.5rem;
 		font-size: 1.2rem;
 		margin: 1rem;
-		background-color: transparent;
+		background-color: #fff8dc;
 		border: 3px solid var(--point-color);
 		border-radius: 5px;
-		color: white;
+		color: #4a4036;
 	}
 
 	:global(input:active, input:focus-visible) {
-		box-shadow: 2px 2px 15px var(--point-color) inset;
+		box-shadow: 2px 2px 15px #d8c3a5 inset;
 		outline: 0;
 	}
 	:global(button) {
@@ -197,7 +197,7 @@
 	.game-over {
 		text-align: center;
 		margin: 2rem;
-		color: white;
+		color: #4a4036;
 	}
 	.board {
 		display: grid;
@@ -207,8 +207,8 @@
 	}
 
 	.category {
-		background: var(--theme-color);
-		color: white;
+		background: #faebd7;
+		color: #4a4036;
 		padding: 1rem;
 		text-align: center;
 		justify-self: center;
@@ -232,8 +232,8 @@
 	}
 
 	.question-card.answered {
-		background: var(--theme-color);
-		color: #888;
+		background: #faebd7;
+		color: #b8aa98;
 		cursor: default;
 	}
 
@@ -242,8 +242,8 @@
 	}
 
 	.selected {
-		background-color: var(--point-color);
-		color: black;
+		background-color: #ffe4c4;
+		color: #4a4036;
 	}
 
 	.unselected {
