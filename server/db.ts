@@ -17,19 +17,18 @@ const lifeQuestions: Question[] = sortQuestions([
         answer: 'Westchester'
     },
     {
-        points: 300,
+        points: 400,
         question: 'What sport does Jiyeon do competitively?',
         imgSrc: '/iceskating.jpg',
         answer: 'Ice skating',
     },
    {
-        points: 400,
-        question: 'Where did Jiyeon live when she was 2?',
-        imgSrc: '/manhattan.jpeg',
-        answer: 'New York City',
+        points: 300,
+        question: 'What instrument does Jiyeon play?',
+        imgSrc: '/violin.jpg',
+        answer: 'Violin',
     }
 ]);
-
 const favoritesQuestions: Question[] = sortQuestions([
     {
         points: 200,
@@ -46,7 +45,7 @@ const favoritesQuestions: Question[] = sortQuestions([
     {
         points: 300,
         question: "What is Jiyeon's favorite dessert?",
-        imgSrc: '/sorbet.jpg',
+        imgSrc: '/icecream.jpg',
         answer: 'Ice cream',
     },
     {
@@ -57,12 +56,12 @@ const favoritesQuestions: Question[] = sortQuestions([
     }
 ]);
 
-const triviaQuestions: Question[] = sortQuestions([
+const randomQuestions: Question[] = sortQuestions([
     {
         points: 100,
-        question: "What is Jiyeon's favorite school subject?",
-        imgSrc: '/science.jpg',
-        answer: 'Science',
+        question: "What is Jiyeon's favorite science subject?",
+        imgSrc: '/chemistry.jpg',
+        answer: 'Chemistry',
     },
     {
         
@@ -99,7 +98,7 @@ const categories = [
     },
     {
         title: "Random Trivia",
-        questions: triviaQuestions
+        questions: randomQuestions
     }
 ];
 
