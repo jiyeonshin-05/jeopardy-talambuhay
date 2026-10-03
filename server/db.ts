@@ -6,15 +6,15 @@ const sortQuestions = (questions: { points: number; question: string; answer: st
 const lifeQuestions: Question[] = sortQuestions([
     {
     points: 100,
-    question: 'How many siblings does Jiyeon have?',
+    question: 'How many siblings does Jiyeon have (answer in words not numbers)?',
     imgSrc: '/sibling.png',
     answer: 'One',
 },
     {
         points: 200,
-        question: 'Where does Jiyeon live?',
+        question: 'Where does Jiyeon live (Hint: "______" county!)?',
         imgSrc: '/westchester.jpg',
-        answer: 'Westchester'
+        answer: 'Westchester County'
     },
     {
         points: 400,
@@ -32,9 +32,9 @@ const lifeQuestions: Question[] = sortQuestions([
 const favoritesQuestions: Question[] = sortQuestions([
     {
         points: 200,
-        question: "What is Jiyeon's favorite color palette?",
-        imgSrc: '/pastel.png',
-        answer: 'Pastel',
+        question: "What is Jiyeon's favorite flower (Hint: include color too)?",
+        imgSrc: '/whiterose.jpg',
+        answer: 'White rose',
     },
     {
         points: 100,
@@ -44,9 +44,9 @@ const favoritesQuestions: Question[] = sortQuestions([
     },
     {
         points: 300,
-        question: "What is Jiyeon's favorite dessert?",
-        imgSrc: '/icecream.jpg',
-        answer: 'Ice cream',
+        question: "What is Jiyeon's favorite science subject?",
+        imgSrc: '/chemistry.jpg',
+        answer: 'Chemistry',
     },
     {
         points: 400,
@@ -59,9 +59,9 @@ const favoritesQuestions: Question[] = sortQuestions([
 const randomQuestions: Question[] = sortQuestions([
     {
         points: 100,
-        question: "What is Jiyeon's favorite science subject?",
-        imgSrc: '/chemistry.jpg',
-        answer: 'Chemistry',
+        question: "What is Jiyeon's dream pet (although she does not have any :()?",
+        imgSrc: '/puppy.jpg',
+        answer: 'Dog',
     },
     {
         
@@ -89,15 +89,15 @@ const randomQuestions: Question[] = sortQuestions([
 
 const categories = [
     {
-        title: "Jiyeon's Life",
+        title: "Jiyeon's Life Stuff",
         questions: lifeQuestions
     },
     {
-        title: "Jiyeon's Favorites",
+        title: "Jiyeon's Favorite Stuff",
         questions: favoritesQuestions
     },
     {
-        title: "Random Trivia",
+        title: "Random Trivia Stuff",
         questions: randomQuestions
     }
 ];
