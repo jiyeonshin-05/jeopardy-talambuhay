@@ -6,13 +6,13 @@ const sortQuestions = (questions: { points: number; question: string; answer: st
 const lifeQuestions: Question[] = sortQuestions([
     {
     points: 100,
-    question: 'How many siblings does Jiyeon have (answer in words not numbers)?',
+    question: 'How many siblings does Jiyeon have? (answer in words not numbers)',
     imgSrc: '/sibling.png',
     answer: 'One',
 },
     {
         points: 200,
-        question: 'Where does Jiyeon live (Hint: "______" county!)?',
+        question: 'Where does Jiyeon live? (Hint: "______" county!)',
         imgSrc: '/westchester.jpg',
         answer: 'Westchester County'
     },
@@ -32,7 +32,7 @@ const lifeQuestions: Question[] = sortQuestions([
 const favoritesQuestions: Question[] = sortQuestions([
     {
         points: 200,
-        question: "What is Jiyeon's favorite flower (Hint: include color too)?",
+        question: "What is Jiyeon's favorite flower? (Hint: include color too)",
         imgSrc: '/whiterose.jpg',
         answer: 'White rose',
     },
@@ -59,7 +59,7 @@ const favoritesQuestions: Question[] = sortQuestions([
 const randomQuestions: Question[] = sortQuestions([
     {
         points: 100,
-        question: "What is Jiyeon's dream pet (although she does not have any :()?",
+        question: "What is Jiyeon's dream pet? (although she does not have any)?",
         imgSrc: '/puppy.jpg',
         answer: 'Dog',
     },

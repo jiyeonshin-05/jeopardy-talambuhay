@@ -84,9 +84,16 @@
 <PlayersWidget {players} />
 {#if isNameModal}
 	<div class="name-entry">
+
+		<h1>Jiyeon's Jeopardy</h1>
+
+<img class="front-image" src="/podium.gif" alt="Jeopardy podium animation" />
+
 		<h2>
-			{#if joinError}Name already taken. Please choose a different name:
-			{:else}Enter your name to join the game:
+			{#if joinError}
+				Name already taken. Please choose a different name:
+			{:else}
+				Enter your name to join the game:
 			{/if}
 		</h2>
 
@@ -193,7 +200,19 @@
 		filter: blur(4px);
 		opacity: 0.6;
 	}
-	.name-entry,
+	.name-entry {
+	text-align: center;
+	margin: 2rem;
+	color: #4a4036;
+}
+
+.name-entry h1 {
+	font-size: 4rem;
+	margin: 1rem 0;
+	color: #4a4036;
+	text-shadow: 3px 3px 0px #d8c3a5;
+}
+
 	.game-over {
 		text-align: center;
 		margin: 2rem;
@@ -250,4 +269,13 @@
 		background-color: var(--theme-color);
 		color: var(--point-color);
 	}
+.front-image {
+	display: block;
+	width: 300px;
+	height: 180px;
+	object-fit: contain;
+	margin: 1rem auto;
+}
+	
 </style>
+
