@@ -1,7 +1,14 @@
 <script lang="ts">
+	import type { PlayerData } from '$lib/index';
 	// This component displays the list of players currently in the game.
-	let props = $props();
+	let props = $props<{
+	players: PlayerData[];
+	streaks: Record<string, number>;
+}>();
 	let clicked = $state(false);
+	$effect(() => {
+	console.log('STREAKS IN WIDGET:', props.streaks);
+});
 </script>
 
 <div class="players-widget">
@@ -13,7 +20,12 @@
 	{#if clicked}
 		<ul>
 			{#each props.players as player}
-				<li>{player.name}: {player.score}</li>
+				<li>
+	<strong>{player.name}</strong> — {player.score} points
+	{#if props.streaks[player.socketId] > 0}
+	🔥 {props.streaks[player.socketId]} streak
+{/if}
+</li>
 			{/each}
 		</ul>
 	{:else}{/if}
@@ -26,17 +38,20 @@
 		color: var(--point-color);
 		cursor: pointer;
 	}
+
 	.players-widget {
-		color: white;
-        opacity: 0.8;
-		position: fixed;
-		right: 1rem;
-		background: var(--theme-color);
-        border: white 2px solid;
-		padding: 1rem;
-		border-radius: 10px;
-		max-width: 200px;
-	}
+	color: #4a4036;
+	opacity: 0.8;
+	position: fixed;
+	top: 1rem;
+	right: 1rem;
+	background: var(--theme-color);
+	border: white 2px solid;
+	padding: 1rem;
+	border-radius: 10px;
+	max-width: 200px;
+	z-index: 9999;
+}
 
 	.players-widget ul {
 		list-style-type: none;

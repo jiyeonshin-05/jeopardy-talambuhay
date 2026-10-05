@@ -9,6 +9,7 @@ const addSocketHandlers = (io: Server) => {
 
         console.log('Current players:', state.playerData);
         socket.emit('playerData', state.playerData);
+        socket.emit('streaks', state.streaks);
 
         socket.on('join', (joinData) => {
             console.log('Player joined:', joinData);
@@ -22,9 +23,11 @@ const addSocketHandlers = (io: Server) => {
                 return;
             }
             state.playerData.push({ name: joinData.name, socketId: socket.id, score: 0 });
+            state.streaks[socket.id] = 0;
             socket.emit('playerJoined');
             // need to emit to all clients the new player data
             io.emit('playerData', state.playerData);
+            io.emit('streaks', state.streaks);
             // emit the current state only to the newly joined player
             socket.emit('whoControls', state.whoControls ?? (state.playerData[0]?.socketId || '')); // emit the first player as the controller
             socket.emit('questionData', state.categories);
@@ -93,25 +96,47 @@ const addSocketHandlers = (io: Server) => {
             const player = state.playerData.find(player => player.socketId === socketId);
             if (player) {
                 if (answer.toLowerCase().trim() === question.answer.toLowerCase()) {
-                    player.score += question.points;
-                    io.emit('whoControls', player.socketId); // the player who answered correctly becomes the controller
+    // Increase the player's correct-answer streak
+    state.streaks[socketId] = (state.streaks[socketId] || 0) + 1;
 
-                    // also emit question as answered
-                    markAsAnswered();
-                    io.emit('questionData', state.categories);
+    let bonus = 0;
 
-                }
-                else {
-                    console.log(`Incorrect answer from ${player.name}, ${socketId}. Deducting points.`);
-                    player.score -= question.points; // Deduct points for incorrect answer
-                    // RESTARTS TIMER IF INCORRECT
-                    if (state.timeLeft <= 2) {
-                        state.timeLeft += 1;
-                    }
-                    startTimer(io);
-                    state.whoBuzzed = null;
-                    io.emit('buzzed', null);
-                }
+    // Give bonus points for streaks
+    if (state.streaks[socketId] === 3) {
+        bonus = 100;
+    } else if (state.streaks[socketId] === 5) {
+        bonus = 200;
+    }
+
+    player.score += question.points + bonus;
+
+    console.log(
+        `${player.name} got it correct! Streak: ${state.streaks[socketId]}, Bonus: ${bonus}`
+    );
+
+    io.emit('whoControls', player.socketId);
+
+    markAsAnswered();
+    io.emit('questionData', state.categories);
+}
+else {
+    console.log(`Incorrect answer from ${player.name}, ${socketId}. Deducting points.`);
+
+    player.score -= question.points;
+
+    // Wrong answer resets the streak
+    state.streaks[socketId] = 0;
+
+    // RESTARTS TIMER IF INCORRECT
+    if (state.timeLeft <= 2) {
+        state.timeLeft += 1;
+    }
+
+    startTimer(io);
+    state.whoBuzzed = null;
+    io.emit('buzzed', null);
+}
+
                 state.selectedQuestion = {
                     ...state.selectedQuestion!,
                     buzzers: [...(state.selectedQuestion?.buzzers || []), player.name]
@@ -119,6 +144,7 @@ const addSocketHandlers = (io: Server) => {
                 io.emit('selectQuestion', state.selectedQuestion);
                 console.log(`Updated score for ${player.name}: ${player.score}`);
                 io.emit('playerData', state.playerData);
+                io.emit('streaks', state.streaks);
             }
         });
 
@@ -126,6 +152,10 @@ const addSocketHandlers = (io: Server) => {
             console.log('Game reset requested by:', socket.id);
             // Reset the game state
             state.playerData = state.playerData.map(player => ({ ...player, score: 0 }));
+            state.streaks = {};
+state.playerData.forEach(player => {
+    state.streaks[player.socketId] = 0;
+});
             state.categories.forEach(category => {
                 category.questions.forEach(question => {
                     question.answered = false;

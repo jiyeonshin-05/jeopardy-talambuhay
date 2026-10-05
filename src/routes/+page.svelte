@@ -7,6 +7,7 @@
 	let questionData = $state([] as { title: string; questions: Question[] }[]);
 	let players = $state([] as PlayerData[]);
 	let name = $state('');
+	let streaks = $state({} as Record<string, number>);
 	let isNameModal = $state(true);
 	let submitName = $state(false);
 	let whoControls = $state('');
@@ -40,9 +41,13 @@
 		console.log('Question data updated:', data);
 	});
 	socket.on('playerData', (data: PlayerData[]) => {
-		players = data;
-		console.log('Updated player data updated:', data);
-	});
+	players = data;
+	console.log('Updated player data updated:', data);
+});
+
+socket.on('streaks', (data: Record<string, number>) => {
+	streaks = data;
+});
 	socket.on('whoControls', (socketId: string) => {
 		whoControls = socketId;
 		console.log('Current controller:', socketId);
@@ -81,7 +86,7 @@
 	}
 </script>
 
-<PlayersWidget {players} />
+<PlayersWidget players={players} streaks={streaks} />
 {#if isNameModal}
 	<div class="name-entry">
 

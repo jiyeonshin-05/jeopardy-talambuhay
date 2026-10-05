@@ -110,6 +110,7 @@ export const state = {
     timeLeft: TIME_LEFT,
     intervalId: null as NodeJS.Timeout | null,
     whoBuzzed: null as string | null,
+    streaks: {} as Record<string, number>,
 };
 
 export interface CheckAnswerPayload {
